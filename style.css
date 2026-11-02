@@ -1,0 +1,53 @@
+/* superhard.quest: a maze in the dark. */
+
+:root {
+  --bg: #0d0d0e; --ink: #ece9e2; --soft: #8d8a84; --faint: #55534f; --red: #e0312b;
+  --sans: 'Geist', ui-sans-serif, system-ui, sans-serif; --mono: 'Geist Mono', ui-monospace, monospace;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; height: 100%; background: var(--bg); color: var(--ink); font: 400 16px/1.55 var(--sans); -webkit-font-smoothing: antialiased; }
+a { color: inherit; text-underline-offset: 3px; }
+:focus-visible { outline: 2px solid var(--red); outline-offset: 3px; border-radius: 4px; }
+
+.quest { position: fixed; inset: 0; overflow: hidden; touch-action: none; user-select: none; -webkit-user-select: none; }
+.quest canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+
+.q-top {
+  position: absolute; top: 0; left: 0; right: 0; display: flex; justify-content: space-between; align-items: center;
+  padding: max(20px, env(safe-area-inset-top)) 24px 0; font: 400 12px var(--mono); letter-spacing: 0.08em; color: var(--soft);
+  pointer-events: none;
+}
+.q-top b { color: var(--ink); font-weight: 500; }
+.q-stats { display: flex; gap: 18px; font-variant-numeric: tabular-nums; opacity: 0; transition: opacity 0.4s; }
+.quest.is-play .q-stats { opacity: 1; }
+
+.q-card {
+  position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); width: min(400px, calc(100% - 32px));
+  padding: 30px 30px 26px; border-radius: 18px; text-align: left;
+  background: rgba(20, 20, 21, 0.86); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.07) inset, 0 30px 80px rgba(0, 0, 0, 0.6);
+  transition: opacity 0.4s, transform 0.5s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+.q-card.away { opacity: 0; transform: translate(-50%, -46%); pointer-events: none; }
+.q-kicker { margin: 0 0 14px; font: 500 11px/1 var(--mono); letter-spacing: 0.16em; text-transform: uppercase; color: var(--red); }
+.q-card h1 { margin: 0 0 10px; font-size: 34px; font-weight: 300; letter-spacing: -0.04em; line-height: 1.05; }
+.q-card p { margin: 0 0 22px; color: var(--soft); font-size: 15px; }
+.q-actions { display: flex; align-items: center; gap: 18px; flex-wrap: wrap; }
+.q-go {
+  font: inherit; font-weight: 500; font-size: 15px; color: var(--bg); background: var(--ink); border: 0; border-radius: 999px;
+  padding: 12px 20px; cursor: pointer; text-decoration: none; display: inline-block; transition: transform 0.12s;
+}
+.q-go:hover { transform: translateY(-1px); }
+.q-go.red { background: var(--red); color: #fff; }
+.q-link { color: var(--soft); font-size: 14px; background: none; border: 0; font-family: inherit; cursor: pointer; padding: 0; text-decoration: underline; text-underline-offset: 3px; }
+.q-small { margin: 16px 0 0 !important; font: 400 12px var(--mono) !important; color: var(--faint) !important; }
+.q-small:empty { display: none; }
+
+.q-hint {
+  position: absolute; bottom: max(22px, env(safe-area-inset-bottom)); left: 0; right: 0; text-align: center; margin: 0;
+  font: 400 12px var(--mono); letter-spacing: 0.04em; color: var(--faint); pointer-events: none; transition: opacity 0.6s;
+}
+.quest:not(.is-play) .q-hint { opacity: 0; }
+
+@media (prefers-reduced-motion: reduce) { .q-card, .q-hint, .q-stats { transition: none; } }

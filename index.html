@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>superhard.quest</title>
+  <meta name="description" content="superhard.quest. A maze in the dark; somewhere in it, a door.">
+  <meta name="generator" content="Bureau (Monolito)">
+  <meta name="theme-color" content="#0d0d0e">
+  <meta property="og:title" content="superhard.quest">
+  <meta property="og:description" content="superhard.quest. A maze in the dark; somewhere in it, a door.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300..700&family=Geist+Mono:wght@400..600&display=swap">
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <div id="quest" class="quest">
+<canvas id="maze" aria-label="The maze"></canvas>
+<header class="q-top"><span><b>superhard</b>.quest</span><span class="q-stats"><span id="moves">0 moves</span><span id="clock">0:00</span></span></header>
+<section id="card" class="q-card">
+  <p class="q-kicker" id="kicker">today's maze</p>
+  <h1 id="title">It's dark in there.</h1>
+  <p id="text">Somewhere in this maze there is a door. You can only see a step or two ahead.</p>
+  <div class="q-actions" id="actions"><button id="go" class="q-go" type="button">Enter</button></div>
+  <p class="q-small" id="small"></p>
+</section>
+<p id="hint" class="q-hint">arrow keys or WASD · swipe on a phone</p>
+<noscript><p style="padding:40px">This maze needs JavaScript. <a href="https://monolito.dev">monolito.dev</a></p></noscript>
+</div>
+<script type="module" src="assets/maze/maze.js"></script>
+</body>
+</html>
